@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artesanato em Crochê - Peças Exclusivas</title>
     <style>
-        /* Estilos gerais */
         * {
             margin: 0;
             padding: 0;
@@ -476,30 +475,6 @@
             <h2 class="section-title">Nossos Produtos</h2>
             <div class="products-grid" id="products-container">
                 <!-- Produtos serão inseridos via JavaScript -->
-                <div class="product-card">
-                    <div class="product-image">Imagem do Produto</div>
-                    <div class="product-info">
-                        <h3 class="product-name">Tapete Redondo</h3>
-                        <div class="product-price">R$ 89,90</div>
-                        <a href="#contato" class="btn">Encomendar</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">Imagem do Produto</div>
-                    <div class="product-info">
-                        <h3 class="product-name">Almofada Decorativa</h3>
-                        <div class="product-price">R$ 69,90</div>
-                        <a href="#contato" class="btn">Encomendar</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">Imagem do Produto</div>
-                    <div class="product-info">
-                        <h3 class="product-name">Conjunto de Porta-Copos</h3>
-                        <div class="product-price">R$ 45,00</div>
-                        <a href="#contato" class="btn">Encomendar</a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -540,7 +515,7 @@
                     <label for="message">Mensagem</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
-                <button type="submit" class="btn">Enviar Mensagem</button>
+                <button type="submit" class="btn" id="contact-submit">Enviar Mensagem</button>
             </div>
         </div>
     </section>
@@ -613,45 +588,17 @@
                         <button class="btn" id="add-product">Adicionar Produto</button>
                     </div>
                     
-                    <div class="product-list">
+                    <div class="product-list" id="admin-products-list">
                         <h4>Produtos Atuais</h4>
-                        <div class="product-item">
-                            <div class="item-image">Imagem</div>
-                            <div class="item-details">
-                                <h4>Tapete Redondo</h4>
-                                <p>R$ 89,90</p>
-                            </div>
-                            <div class="item-actions">
-                                <button class="edit-btn">Editar</button>
-                                <button class="delete-btn">Excluir</button>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="item-image">Imagem</div>
-                            <div class="item-details">
-                                <h4>Almofada Decorativa</h4>
-                                <p>R$ 69,90</p>
-                            </div>
-                            <div class="item-actions">
-                                <button class="edit-btn">Editar</button>
-                                <button class="delete-btn">Excluir</button>
-                            </div>
-                        </div>
+                        <!-- Produtos serão carregados aqui -->
                     </div>
                 </div>
                 
                 <!-- Mensagens Section -->
                 <div class="dashboard-section" id="messages-section">
                     <h3>Mensagens Recebidas</h3>
-                    <div class="product-item">
-                        <div class="item-details">
-                            <h4>João Silva</h4>
-                            <p>joao@email.com | Assunto: Encomenda</p>
-                            <p>Gostaria de fazer uma encomenda...</p>
-                        </div>
-                        <div class="item-actions">
-                            <button class="delete-btn">Excluir</button>
-                        </div>
+                    <div id="messages-list">
+                        <!-- Mensagens serão carregadas aqui -->
                     </div>
                 </div>
                 
@@ -660,148 +607,414 @@
                     <h3>Configurações do Site</h3>
                     <div class="form-group">
                         <label for="site-title">Título do Site</label>
-                        <input type="text" id="site-title" name="site-title" value="Arte em Crochê">
+                        <input type="text" id="site-title" name="site-title">
                     </div>
                     <div class="form-group">
                         <label for="banner-title">Título do Banner</label>
-                        <input type="text" id="banner-title" name="banner-title" value="Peças Artesanais em Crochê">
+                        <input type="text" id="banner-title" name="banner-title">
                     </div>
                     <div class="form-group">
                         <label for="banner-text">Texto do Banner</label>
-                        <textarea id="banner-text" name="banner-text">Trabalhos feitos à mão com amor e dedicação para deixar sua casa mais aconchegante e estilosa.</textarea>
+                        <textarea id="banner-text" name="banner-text"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="about-text">Texto Sobre</label>
-                        <textarea id="about-text" name="about-text">Olá! Sou Maria, apaixonada por crochê há mais de 10 anos. Cada peça que crio é única e feita com muito carinho, utilizando materiais de alta qualidade para garantir durabilidade e beleza.</textarea>
+                        <textarea id="about-text" name="about-text"></textarea>
                     </div>
-                    <button class="btn">Salvar Alterações</button>
+                    <button class="btn" id="save-settings">Salvar Alterações</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Dados simulados
-        let products = [
-            { id: 1, name: 'Tapete Redondo', price: 89.90, image: 'tapete.jpg' },
-            { id: 2, name: 'Almofada Decorativa', price: 69.90, image: 'almofada.jpg' },
-            { id: 3, name: 'Conjunto de Porta-Copos', price: 45.00, image: 'porta-copos.jpg' }
-        ];
-        
-        // Credenciais para login (em um sistema real, isso seria verificado no servidor)
-        const adminCredentials = {
-            username: 'admin',
-            password: 'admin123'
-        };
-        
-        // Elementos do DOM
-        const loginBtn = document.getElementById('login-btn');
-        const loginModal = document.getElementById('login-modal');
-        const closeModal = document.getElementById('close-modal');
-        const loginSubmit = document.getElementById('login-submit');
-        const adminDashboard = document.getElementById('admin-dashboard');
-        const logoutBtn = document.getElementById('logout-btn');
-        const dashboardNavBtns = document.querySelectorAll('.dashboard-nav button');
-        const dashboardSections = document.querySelectorAll('.dashboard-section');
-        
-        // Evento para abrir modal de login
-        loginBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            loginModal.style.display = 'flex';
-        });
-        
-        // Evento para fechar modal
-        closeModal.addEventListener('click', function() {
-            loginModal.style.display = 'none';
-        });
-        
-        // Clique fora do modal fecha o modal
-        window.addEventListener('click', function(e) {
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-        });
-        
-        // Evento de login
-        loginSubmit.addEventListener('click', function() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        // Sistema completo de gerenciamento para loja de crochê
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dados iniciais (usando localStorage para persistência)
+            let products = JSON.parse(localStorage.getItem('crocheProducts')) || [
+                { id: 1, name: 'Tapete Redondo', price: 89.90, image: 'tapete.jpg' },
+                { id: 2, name: 'Almofada Decorativa', price: 69.90, image: 'almofada.jpg' },
+                { id: 3, name: 'Conjunto de Porta-Copos', price: 45.00, image: 'porta-copos.jpg' }
+            ];
+
+            let messages = JSON.parse(localStorage.getItem('crocheMessages')) || [];
             
-            if (username === adminCredentials.username && password === adminCredentials.password) {
-                loginModal.style.display = 'none';
+            let siteSettings = JSON.parse(localStorage.getItem('crocheSettings')) || {
+                siteTitle: 'Arte em Crochê',
+                bannerTitle: 'Peças Artesanais em Crochê',
+                bannerText: 'Trabalhos feitos à mão com amor e dedicação para deixar sua casa mais aconchegante e estilosa.',
+                aboutText: 'Olá! Sou Maria, apaixonada por crochê há mais de 10 anos. Cada peça que crio é única e feita com muito carinho, utilizando materiais de alta qualidade para garantir durabilidade e beleza.'
+            };
+
+            // Credenciais de administrador
+            const adminCredentials = {
+                username: 'admin',
+                password: 'admin123'
+            };
+
+            // Elementos DOM
+            const DOM = {
+                // Login
+                loginBtn: document.getElementById('login-btn'),
+                loginModal: document.getElementById('login-modal'),
+                closeModal: document.getElementById('close-modal'),
+                loginSubmit: document.getElementById('login-submit'),
+                
+                // Dashboard
+                adminDashboard: document.getElementById('admin-dashboard'),
+                logoutBtn: document.getElementById('logout-btn'),
+                dashboardNavBtns: document.querySelectorAll('.dashboard-nav button'),
+                dashboardSections: document.querySelectorAll('.dashboard-section'),
+                
+                // Produtos
+                productsContainer: document.getElementById('products-container'),
+                adminProductsList: document.getElementById('admin-products-list'),
+                productNameInput: document.getElementById('product-name'),
+                productPriceInput: document.getElementById('product-price'),
+                productImageInput: document.getElementById('product-image'),
+                addProductBtn: document.getElementById('add-product'),
+                
+                // Mensagens
+                messagesList: document.getElementById('messages-list'),
+                
+                // Configurações
+                siteTitleInput: document.getElementById('site-title'),
+                bannerTitleInput: document.getElementById('banner-title'),
+                bannerTextInput: document.getElementById('banner-text'),
+                aboutTextInput: document.getElementById('about-text'),
+                saveSettingsBtn: document.getElementById('save-settings'),
+                
+                // Contato
+                contactForm: document.querySelector('.contact-form'),
+                contactSubmit: document.getElementById('contact-submit')
+            };
+
+            // Inicialização
+            function init() {
+                renderProducts();
+                loadSiteSettings();
+                setupEventListeners();
+            }
+
+            // Renderiza os produtos na página principal
+            function renderProducts() {
+                DOM.productsContainer.innerHTML = products.map(product => `
+                    <div class="product-card" data-id="${product.id}">
+                        <div class="product-image">${product.image}</div>
+                        <div class="product-info">
+                            <h3 class="product-name">${product.name}</h3>
+                            <div class="product-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
+                            <a href="#contato" class="btn">Encomendar</a>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Carrega as configurações do site
+            function loadSiteSettings() {
+                // Aplica as configurações no site
+                document.title = siteSettings.siteTitle;
+                document.querySelector('.logo').textContent = siteSettings.siteTitle;
+                document.querySelector('.footer-logo').textContent = siteSettings.siteTitle;
+                document.querySelector('.banner-content h1').textContent = siteSettings.bannerTitle;
+                document.querySelector('.banner-content p').textContent = siteSettings.bannerText;
+                document.querySelector('.about-text p:first-child').textContent = siteSettings.aboutText;
+                
+                // Preenche os campos no painel admin
+                if (DOM.siteTitleInput) {
+                    DOM.siteTitleInput.value = siteSettings.siteTitle;
+                    DOM.bannerTitleInput.value = siteSettings.bannerTitle;
+                    DOM.bannerTextInput.value = siteSettings.bannerText;
+                    DOM.aboutTextInput.value = siteSettings.aboutText;
+                }
+            }
+
+            // Configura os event listeners
+            function setupEventListeners() {
+                // Login
+                DOM.loginBtn.addEventListener('click', openLoginModal);
+                DOM.closeModal.addEventListener('click', closeLoginModal);
+                DOM.loginSubmit.addEventListener('click', handleLogin);
+                DOM.logoutBtn.addEventListener('click', handleLogout);
+                
+                // Navegação do dashboard
+                DOM.dashboardNavBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        switchDashboardSection(this.getAttribute('data-section'));
+                    });
+                });
+
+                // Gerenciamento de produtos
+                DOM.addProductBtn.addEventListener('click', handleAddProduct);
+                
+                // Configurações
+                DOM.saveSettingsBtn.addEventListener('click', saveSettings);
+                
+                // Contato
+                DOM.contactSubmit.addEventListener('click', handleContactSubmit);
+                
+                // Fechar modal ao clicar fora
+                window.addEventListener('click', function(e) {
+                    if (e.target === DOM.loginModal) {
+                        closeLoginModal();
+                    }
+                });
+            }
+
+            // Funções de login/logout
+            function openLoginModal(e) {
+                e.preventDefault();
+                DOM.loginModal.style.display = 'flex';
+            }
+
+            function closeLoginModal() {
+                DOM.loginModal.style.display = 'none';
+            }
+
+            function handleLogin() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                if (username === adminCredentials.username && password === adminCredentials.password) {
+                    closeLoginModal();
+                    showAdminDashboard();
+                } else {
+                    alert('Usuário ou senha incorretos!');
+                }
+            }
+
+            function handleLogout() {
+                DOM.adminDashboard.style.display = 'none';
+                document.body.style.backgroundColor = '#f9f5f1';
+                document.querySelectorAll('header, section, footer').forEach(el => {
+                    el.style.display = 'block';
+                });
+            }
+
+            function showAdminDashboard() {
                 document.body.style.backgroundColor = '#f0f0f0';
                 document.querySelectorAll('header, section, footer').forEach(el => {
                     el.style.display = 'none';
                 });
-                adminDashboard.style.display = 'block';
-            } else {
-                alert('Usuário ou senha incorretos!');
+                DOM.adminDashboard.style.display = 'block';
+                renderAdminProducts();
+                loadSiteSettings();
+                renderMessages();
             }
-        });
-        
-        // Evento de logout
-        logoutBtn.addEventListener('click', function() {
-            adminDashboard.style.display = 'none';
-            document.body.style.backgroundColor = '#f9f5f1';
-            document.querySelectorAll('header, section, footer').forEach(el => {
-                el.style.display = 'block';
-            });
-        });
-        
-        // Navegação do dashboard
-        dashboardNavBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const sectionId = this.getAttribute('data-section');
+
+            // Navegação do dashboard
+            function switchDashboardSection(sectionId) {
+                DOM.dashboardNavBtns.forEach(btn => btn.classList.remove('active'));
+                document.querySelector(`.dashboard-nav button[data-section="${sectionId}"]`).classList.add('active');
                 
-                // Atualiza botões ativos
-                dashboardNavBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Mostra seção correta
-                dashboardSections.forEach(section => {
+                DOM.dashboardSections.forEach(section => {
                     section.classList.remove('active');
                     if (section.id === `${sectionId}-section`) {
                         section.classList.add('active');
                     }
                 });
-            });
-        });
-        
-        // Adicionar produto (simulado)
-        const addProductBtn = document.getElementById('add-product');
-        addProductBtn.addEventListener('click', function() {
-            const name = document.getElementById('product-name').value;
-            const price = parseFloat(document.getElementById('product-price').value);
-            
-            if (name && price) {
-                const newProduct = {
-                    id: products.length + 1,
-                    name: name,
-                    price: price,
-                    image: 'novo-produto.jpg'
+            }
+
+            // Gerenciamento de produtos
+            function renderAdminProducts() {
+                DOM.adminProductsList.innerHTML = '<h4>Produtos Atuais</h4>' + 
+                    products.map(product => `
+                        <div class="product-item" data-id="${product.id}">
+                            <div class="item-image">${product.image}</div>
+                            <div class="item-details">
+                                <h4>${product.name}</h4>
+                                <p>R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+                            </div>
+                            <div class="item-actions">
+                                <button class="edit-btn" data-id="${product.id}">Editar</button>
+                                <button class="delete-btn" data-id="${product.id}">Excluir</button>
+                            </div>
+                        </div>
+                    `).join('');
+                
+                // Adiciona eventos aos botões de editar/excluir
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        editProduct(parseInt(this.getAttribute('data-id')));
+                    });
+                });
+                
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        deleteProduct(parseInt(this.getAttribute('data-id')));
+                    });
+                });
+            }
+
+            function handleAddProduct() {
+                const name = DOM.productNameInput.value;
+                const price = parseFloat(DOM.productPriceInput.value);
+                
+                if (name && !isNaN(price)) {
+                    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                    const newProduct = {
+                        id: newId,
+                        name: name,
+                        price: price,
+                        image: DOM.productImageInput.files.length > 0 ? 
+                            URL.createObjectURL(DOM.productImageInput.files[0]) : 'novo-produto.jpg'
+                    };
+                    
+                    products.push(newProduct);
+                    saveProducts();
+                    resetProductForm();
+                    alert('Produto adicionado com sucesso!');
+                } else {
+                    alert('Por favor, preencha todos os campos corretamente!');
+                }
+            }
+
+            function editProduct(id) {
+                const product = products.find(p => p.id === id);
+                if (product) {
+                    DOM.productNameInput.value = product.name;
+                    DOM.productPriceInput.value = product.price;
+                    
+                    // Altera o botão para atualização
+                    DOM.addProductBtn.textContent = 'Atualizar Produto';
+                    DOM.addProductBtn.onclick = function() {
+                        updateProduct(id);
+                    };
+                }
+            }
+
+            function updateProduct(id) {
+                const name = DOM.productNameInput.value;
+                const price = parseFloat(DOM.productPriceInput.value);
+                
+                if (name && !isNaN(price)) {
+                    const index = products.findIndex(p => p.id === id);
+                    if (index !== -1) {
+                        products[index] = {
+                            id: id,
+                            name: name,
+                            price: price,
+                            image: DOM.productImageInput.files.length > 0 ? 
+                                URL.createObjectURL(DOM.productImageInput.files[0]) : products[index].image
+                        };
+                        
+                        saveProducts();
+                        resetProductForm();
+                        alert('Produto atualizado com sucesso!');
+                    }
+                } else {
+                    alert('Por favor, preencha todos os campos corretamente!');
+                }
+            }
+
+            function deleteProduct(id) {
+                if (confirm('Tem certeza que deseja excluir este produto?')) {
+                    products = products.filter(p => p.id !== id);
+                    saveProducts();
+                    alert('Produto excluído com sucesso!');
+                }
+            }
+
+            function resetProductForm() {
+                DOM.productNameInput.value = '';
+                DOM.productPriceInput.value = '';
+                DOM.productImageInput.value = '';
+                DOM.addProductBtn.textContent = 'Adicionar Produto';
+                DOM.addProductBtn.onclick = handleAddProduct;
+            }
+
+            // Mensagens de contato
+            function renderMessages() {
+                DOM.messagesList.innerHTML = messages.map(msg => `
+                    <div class="product-item">
+                        <div class="item-details">
+                            <h4>${msg.name}</h4>
+                            <p>${msg.email} | Assunto: ${msg.subject}</p>
+                            <p>${msg.message}</p>
+                            <small>${new Date(msg.date).toLocaleString()}</small>
+                        </div>
+                        <div class="item-actions">
+                            <button class="delete-btn" data-id="${msg.id}">Excluir</button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Adiciona eventos aos botões de excluir
+                document.querySelectorAll('#messages-section .delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        deleteMessage(parseInt(this.getAttribute('data-id')));
+                    });
+                });
+            }
+
+            function handleContactSubmit(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                if (name && email && subject && message) {
+                    const newMessage = {
+                        id: messages.length > 0 ? Math.max(...messages.map(m => m.id)) + 1 : 1,
+                        name: name,
+                        email: email,
+                        subject: subject,
+                        message: message,
+                        date: new Date().toISOString()
+                    };
+                    
+                    messages.push(newMessage);
+                    saveMessages();
+                    
+                    // Limpa o formulário
+                    DOM.contactForm.reset();
+                    
+                    alert('Mensagem enviada com sucesso!');
+                } else {
+                    alert('Por favor, preencha todos os campos!');
+                }
+            }
+
+            function deleteMessage(id) {
+                if (confirm('Tem certeza que deseja excluir esta mensagem?')) {
+                    messages = messages.filter(m => m.id !== id);
+                    saveMessages();
+                    renderMessages();
+                    alert('Mensagem excluída com sucesso!');
+                }
+            }
+
+            // Configurações do site
+            function saveSettings() {
+                siteSettings = {
+                    siteTitle: DOM.siteTitleInput.value,
+                    bannerTitle: DOM.bannerTitleInput.value,
+                    bannerText: DOM.bannerTextInput.value,
+                    aboutText: DOM.aboutTextInput.value
                 };
                 
-                products.push(newProduct);
-                alert('Produto adicionado com sucesso!');
-                
-                // Limpa campos
-                document.getElementById('product-name').value = '';
-                document.getElementById('product-price').value = '';
-                document.getElementById('product-image').value = '';
-                
-                // Em um sistema real, aqui você enviaria os dados para o servidor
-                // e atualizaria a lista de produtos
-            } else {
-                alert('Por favor, preencha todos os campos!');
+                localStorage.setItem('crocheSettings', JSON.stringify(siteSettings));
+                loadSiteSettings();
+                alert('Configurações salvas com sucesso!');
             }
+
+            // Funções de persistência
+            function saveProducts() {
+                localStorage.setItem('crocheProducts', JSON.stringify(products));
+                renderProducts();
+                renderAdminProducts();
+            }
+
+            function saveMessages() {
+                localStorage.setItem('crocheMessages', JSON.stringify(messages));
+                renderMessages();
+            }
+
+            // Inicializa a aplicação
+            init();
         });
-        
-        // Em um sistema real, você teria funções para:
-        // 1. Carregar produtos do servidor
-        // 2. Salvar alterações no servidor
-        // 3. Upload de imagens
-        // 4. Sistema de autenticação seguro
-        // 5. Processamento de formulários de contato
     </script>
 </body>
 </html>
