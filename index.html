@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artesanato em Crochê - Peças Exclusivas</title>
+    <style>
+        /* Estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f5f1;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d48166;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #d48166;
+        }
+        
+        /* Banner */
+        .banner {
+            height: 400px;
+            background-color: #e9dfd8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .banner-content h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #d48166;
+        }
+        
+        .banner-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            background-color: #d48166;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c06a4e;
+        }
+        
+        /* Produtos */
+        .products-section {
+            padding: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #f0e5dd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d48166;
+            margin-bottom: 15px;
+        }
+        
+        /* Sobre */
+        .about-section {
+            padding: 50px 0;
+            background-color: #fff;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background-color: #f0e5dd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #d48166;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        /* Contato */
+        .contact-section {
+            padding: 50px 0;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #d48166;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        /* Admin Dashboard */
+        .admin-dashboard {
+            display: none;
+            padding: 30px 0;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-title {
+            font-size: 24px;
+            color: #d48166;
+        }
+        
+        .dashboard-nav {
+            display: flex;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-nav button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .dashboard-nav button.active {
+            background-color: #d48166;
+            color: white;
+        }
+        
+        .dashboard-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .dashboard-section {
+            display: none;
+        }
+        
+        .dashboard-section.active {
+            display: block;
+        }
+        
+        .product-form {
+            margin-bottom: 30px;
+        }
+        
+        .product-list {
+            border-top: 1px solid #ddd;
+            padding-top: 30px;
+        }
+        
+        .product-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .item-image {
+            width: 80px;
+            height: 80px;
+            background-color: #f0e5dd;
+            border-radius: 4px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-actions button {
+            margin-left: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .edit-btn {
+            background-color: #f0e5dd;
+            color: #333;
+        }
+        
+        .delete-btn {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .banner {
+                height: 300px;
+            }
+            
+            .banner-content h1 {
+                font-size: 32px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image,
+            .about-text {
+                flex: none;
+                width: 100%;
+            }
+            
+            .about-image {
+                height: 300px;
+                margin-bottom: 30px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Arte em Crochê</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#" id="login-btn">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner / Home -->
+    <section class="banner" id="home">
+        <div class="container">
+            <div class="banner-content">
+                <h1>Peças Artesanais em Crochê</h1>
+                <p>Trabalhos feitos à mão com amor e dedicação para deixar sua casa mais aconchegante e estilosa.</p>
+                <a href="#produtos" class="btn">Ver Produtos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section class="products-section" id="produtos">
+        <div class="container">
+            <h2 class="section-title">Nossos Produtos</h2>
+            <div class="products-grid" id="products-container">
+                <!-- Produtos serão inseridos via JavaScript -->
+                <div class="product-card">
+                    <div class="product-image">Imagem do Produto</div>
+                    <div class="product-info">
+                        <h3 class="product-name">Tapete Redondo</h3>
+                        <div class="product-price">R$ 89,90</div>
+                        <a href="#contato" class="btn">Encomendar</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">Imagem do Produto</div>
+                    <div class="product-info">
+                        <h3 class="product-name">Almofada Decorativa</h3>
+                        <div class="product-price">R$ 69,90</div>
+                        <a href="#contato" class="btn">Encomendar</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">Imagem do Produto</div>
+                    <div class="product-info">
+                        <h3 class="product-name">Conjunto de Porta-Copos</h3>
+                        <div class="product-price">R$ 45,00</div>
+                        <a href="#contato" class="btn">Encomendar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="about-section" id="sobre">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">Foto da Artesã</div>
+                <div class="about-text">
+                    <h2>Sobre Nosso Trabalho</h2>
+                    <p>Olá! Sou Maria, apaixonada por crochê há mais de 10 anos. Cada peça que crio é única e feita com muito carinho, utilizando materiais de alta qualidade para garantir durabilidade e beleza.</p>
+                    <p>Meu trabalho começou como um hobby e hoje se transformou em uma paixão que quero compartilhar com você. Cada produto é pensado em cada detalhe para trazer conforto, estilo e personalidade para sua casa.</p>
+                    <p>Além dos produtos disponíveis no site, também aceito encomendas personalizadas. Entre em contato comigo para discutirmos o projeto dos seus sonhos!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact-section" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Assunto</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensagem</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Arte em Crochê</div>
+                <div class="social-links">
+                    <a href="#">FB</a>
+                    <a href="#">IG</a>
+                    <a href="#">WA</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Arte em Crochê. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="login-modal">
+        <span class="close-modal" id="close-modal">&times;</span>
+        <div class="login-form">
+            <h2>Área Administrativa</h2>
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="button" class="btn" id="login-submit">Entrar</button>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard" id="admin-dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2 class="dashboard-title">Painel Administrativo</h2>
+                <button class="btn" id="logout-btn">Sair</button>
+            </div>
+            
+            <div class="dashboard-nav">
+                <button class="active" data-section="products">Produtos</button>
+                <button data-section="messages">Mensagens</button>
+                <button data-section="settings">Configurações</button>
+            </div>
+            
+            <div class="dashboard-content">
+                <!-- Produtos Section -->
+                <div class="dashboard-section active" id="products-section">
+                    <h3>Gerenciar Produtos</h3>
+                    <div class="product-form">
+                        <div class="form-group">
+                            <label for="product-name">Nome do Produto</label>
+                            <input type="text" id="product-name" name="product-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price">Preço (R$)</label>
+                            <input type="number" id="product-price" name="product-price" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image">Imagem</label>
+                            <input type="file" id="product-image" name="product-image">
+                        </div>
+                        <button class="btn" id="add-product">Adicionar Produto</button>
+                    </div>
+                    
+                    <div class="product-list">
+                        <h4>Produtos Atuais</h4>
+                        <div class="product-item">
+                            <div class="item-image">Imagem</div>
+                            <div class="item-details">
+                                <h4>Tapete Redondo</h4>
+                                <p>R$ 89,90</p>
+                            </div>
+                            <div class="item-actions">
+                                <button class="edit-btn">Editar</button>
+                                <button class="delete-btn">Excluir</button>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="item-image">Imagem</div>
+                            <div class="item-details">
+                                <h4>Almofada Decorativa</h4>
+                                <p>R$ 69,90</p>
+                            </div>
+                            <div class="item-actions">
+                                <button class="edit-btn">Editar</button>
+                                <button class="delete-btn">Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mensagens Section -->
+                <div class="dashboard-section" id="messages-section">
+                    <h3>Mensagens Recebidas</h3>
+                    <div class="product-item">
+                        <div class="item-details">
+                            <h4>João Silva</h4>
+                            <p>joao@email.com | Assunto: Encomenda</p>
+                            <p>Gostaria de fazer uma encomenda...</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="delete-btn">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Configurações Section -->
+                <div class="dashboard-section" id="settings-section">
+                    <h3>Configurações do Site</h3>
+                    <div class="form-group">
+                        <label for="site-title">Título do Site</label>
+                        <input type="text" id="site-title" name="site-title" value="Arte em Crochê">
+                    </div>
+                    <div class="form-group">
+                        <label for="banner-title">Título do Banner</label>
+                        <input type="text" id="banner-title" name="banner-title" value="Peças Artesanais em Crochê">
+                    </div>
+                    <div class="form-group">
+                        <label for="banner-text">Texto do Banner</label>
+                        <textarea id="banner-text" name="banner-text">Trabalhos feitos à mão com amor e dedicação para deixar sua casa mais aconchegante e estilosa.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="about-text">Texto Sobre</label>
+                        <textarea id="about-text" name="about-text">Olá! Sou Maria, apaixonada por crochê há mais de 10 anos. Cada peça que crio é única e feita com muito carinho, utilizando materiais de alta qualidade para garantir durabilidade e beleza.</textarea>
+                    </div>
+                    <button class="btn">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados simulados
+        let products = [
+            { id: 1, name: 'Tapete Redondo', price: 89.90, image: 'tapete.jpg' },
+            { id: 2, name: 'Almofada Decorativa', price: 69.90, image: 'almofada.jpg' },
+            { id: 3, name: 'Conjunto de Porta-Copos', price: 45.00, image: 'porta-copos.jpg' }
+        ];
+        
+        // Credenciais para login (em um sistema real, isso seria verificado no servidor)
+        const adminCredentials = {
+            username: 'admin',
+            password: 'admin123'
+        };
+        
+        // Elementos do DOM
+        const loginBtn = document.getElementById('login-btn');
+        const loginModal = document.getElementById('login-modal');
+        const closeModal = document.getElementById('close-modal');
+        const loginSubmit = document.getElementById('login-submit');
+        const adminDashboard = document.getElementById('admin-dashboard');
+        const logoutBtn = document.getElementById('logout-btn');
+        const dashboardNavBtns = document.querySelectorAll('.dashboard-nav button');
+        const dashboardSections = document.querySelectorAll('.dashboard-section');
+        
+        // Evento para abrir modal de login
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+        });
+        
+        // Evento para fechar modal
+        closeModal.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+        
+        // Clique fora do modal fecha o modal
+        window.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+        
+        // Evento de login
+        loginSubmit.addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                loginModal.style.display = 'none';
+                document.body.style.backgroundColor = '#f0f0f0';
+                document.querySelectorAll('header, section, footer').forEach(el => {
+                    el.style.display = 'none';
+                });
+                adminDashboard.style.display = 'block';
+            } else {
+                alert('Usuário ou senha incorretos!');
+            }
+        });
+        
+        // Evento de logout
+        logoutBtn.addEventListener('click', function() {
+            adminDashboard.style.display = 'none';
+            document.body.style.backgroundColor = '#f9f5f1';
+            document.querySelectorAll('header, section, footer').forEach(el => {
+                el.style.display = 'block';
+            });
+        });
+        
+        // Navegação do dashboard
+        dashboardNavBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const sectionId = this.getAttribute('data-section');
+                
+                // Atualiza botões ativos
+                dashboardNavBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Mostra seção correta
+                dashboardSections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === `${sectionId}-section`) {
+                        section.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Adicionar produto (simulado)
+        const addProductBtn = document.getElementById('add-product');
+        addProductBtn.addEventListener('click', function() {
+            const name = document.getElementById('product-name').value;
+            const price = parseFloat(document.getElementById('product-price').value);
+            
+            if (name && price) {
+                const newProduct = {
+                    id: products.length + 1,
+                    name: name,
+                    price: price,
+                    image: 'novo-produto.jpg'
+                };
+                
+                products.push(newProduct);
+                alert('Produto adicionado com sucesso!');
+                
+                // Limpa campos
+                document.getElementById('product-name').value = '';
+                document.getElementById('product-price').value = '';
+                document.getElementById('product-image').value = '';
+                
+                // Em um sistema real, aqui você enviaria os dados para o servidor
+                // e atualizaria a lista de produtos
+            } else {
+                alert('Por favor, preencha todos os campos!');
+            }
+        });
+        
+        // Em um sistema real, você teria funções para:
+        // 1. Carregar produtos do servidor
+        // 2. Salvar alterações no servidor
+        // 3. Upload de imagens
+        // 4. Sistema de autenticação seguro
+        // 5. Processamento de formulários de contato
+    </script>
+</body>
+</html>
